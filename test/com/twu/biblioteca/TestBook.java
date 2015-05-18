@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
 public class TestBook {
     @Test
     public void validateNameOfBook(){
-        Book book= new Book("Gaby",1987);
-        assertTrue("Gaby".equals(book.getName()));
+        Book book= new Book("Gaby",1987,1);
+        assertTrue("GABY".equals(book.getName()));
     }
 }

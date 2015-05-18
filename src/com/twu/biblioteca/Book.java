@@ -6,12 +6,14 @@ package com.twu.biblioteca;
 public class Book {
     private String name;
     private int year;
+    private int status;
 
-    public Book(String name, int year) {
-        name=name;
-        year=year;
+    public Book(String name, int year,int status) {
+        this.name=name.toUpperCase();
+        this.year=year;
+        this.status=status;
     }
-
+    public Book() {}
     public String getName() {
         return name;
     }
@@ -26,5 +28,13 @@ public class Book {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
