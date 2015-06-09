@@ -10,6 +10,8 @@ import java.util.Scanner;
 import static org.junit.Assert.*;
 
 public class TestBibliotecaApp {
+    public static final String spaces = "%-50s";
+    public static final String YEAR = "2015";
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private BibliotecaApp bibliotecaApp;
@@ -65,10 +67,10 @@ public class TestBibliotecaApp {
     public void shouldExecuteFirstOption() throws IOException {
         bibliotecaApp.biblioteca.loadBooks("libros.txt");
         bibliotecaApp.execute(1);
-        String firstBookName = String.format("%-50s", "Infierno de Roma");
-        String firstBookYear = String.format("%-50s", "2015");
-        String secondBookName = String.format("%-50s", "Recuerdos del cuerpo");
-        String secondBookYear = String.format("%-50s", "2015");
+        String firstBookName = String.format(spaces, "Infierno de Roma");
+        String firstBookYear = String.format(spaces, YEAR);
+        String secondBookName = String.format(spaces, "Recuerdos del cuerpo");
+        String secondBookYear = String.format(spaces, YEAR);
         String text = firstBookName + firstBookYear + "\n" + secondBookName + secondBookYear + "\n";
         assertEquals(text.toUpperCase(), outContent.toString());
     }
