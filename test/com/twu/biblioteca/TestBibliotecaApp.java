@@ -52,19 +52,25 @@ public class TestBibliotecaApp {
     @Test
     public void shouldExitApplication() throws IOException {
         //option=Integer.parseInt(bibliotecaApp.getMenuOption());
-        bibliotecaApp.execute(2);
+        bibliotecaApp.execute(4);
         assertEquals("Finish!\n", outContent.toString());
     }
     @Test
     public void shouldValidateInvalidOption() throws IOException {
         //option=Integer.parseInt(bibliotecaApp.getMenuOption());
-        bibliotecaApp.execute(2);
+        bibliotecaApp.execute(0);
         assertEquals("Select a valid option!\n", outContent.toString());
     }
     @Test
     public void shouldExecuteFirstOption() throws IOException {
+        bibliotecaApp.biblioteca.loadBooks("libros.txt");
         bibliotecaApp.execute(1);
-        assertEquals("Finish!\n", outContent.toString());
+        String firstBookName = String.format("%-50s", "Infierno de Roma");
+        String firstBookYear = String.format("%-50s", "2015");
+        String secondBookName = String.format("%-50s", "Recuerdos del cuerpo");
+        String secondBookYear = String.format("%-50s", "2015");
+        String text = firstBookName + firstBookYear + "\n" + secondBookName + secondBookYear + "\n";
+        assertEquals(text.toUpperCase(), outContent.toString());
     }
 
 

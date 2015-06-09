@@ -1,0 +1,15 @@
+.DS_Store
+.idea/workspace.xml
+.gradle
+build/
+out/
+logs/
+*.iml
+*.ipr
+*.iws
+*.ids
+.idea/
+gradlew
+gradlew.bat
+build/classes
+gradle/wrapper

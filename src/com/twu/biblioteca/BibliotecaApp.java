@@ -24,7 +24,7 @@ public class BibliotecaApp {
                 int intOption=Integer.parseInt(option);
                 bibliotecaApp.execute(intOption);
             }catch(Exception e) {
-                System.out.println("You can insert only numbers!!!");
+                System.out.println("You can only insert numbers!!!");
             }
         }
 
@@ -40,20 +40,6 @@ public class BibliotecaApp {
 
     public void showMenu(String menuOption) {
         writeOption(menuOption);
-    }
-
-    public boolean validateChoosenOption(String optionMenu) {
-
-        return false;
-    }
-
-    public boolean receiveMenuOption() throws IOException {
-        String option = inputUser();
-        boolean validOption = false;
-        if ("1".equals(option)) {
-            validOption = true;
-        }
-        return validOption;
     }
 
     private String inputUser() throws IOException {
@@ -96,10 +82,5 @@ public class BibliotecaApp {
                 writeOption("Select a valid option!");
                 break;
         }
-    }
-
-    public String getMenuOption() {
-        Scanner in = new Scanner(System.in);
-        return in.next();
     }
 }
