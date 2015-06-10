@@ -1,35 +1,36 @@
 package com.twu.biblioteca;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
 
-public class BibliotecaApp {
-    public Biblioteca biblioteca=new Biblioteca();
-
+public class LibraryApp {
+    private Librarian librarian;
     public static void main(String[] args) throws IOException, InterruptedException {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
-        bibliotecaApp.writeWelcomeMessage();
-        bibliotecaApp.waitOneThousandMiliseconds();
-        bibliotecaApp.biblioteca.loadBooks("libros.txt");
+        LibraryApp libraryApp = new LibraryApp();
+        libraryApp.writeWelcomeMessage();
+        libraryApp.waitOneThousandMiliseconds();
+        libraryApp.loadVariables();
+
         while (true){
-            bibliotecaApp.showMenu("1. List Books");
-            bibliotecaApp.showMenu("2. CheckOut Books");
-            bibliotecaApp.showMenu("3. Return Books");
-            bibliotecaApp.showMenu("4. Exit");
-            bibliotecaApp.showMenu("Choose an option...");
-            String option=bibliotecaApp.inputUser();
+            libraryApp.showMenu("1. List Books");
+            libraryApp.showMenu("2. CheckOut Books");
+            libraryApp.showMenu("3. Return Books");
+            libraryApp.showMenu("4. Exit");
+            libraryApp.showMenu("Choose an option...");
+            String option= libraryApp.inputUser();
             try{
                 int intOption=Integer.parseInt(option);
-                bibliotecaApp.execute(intOption);
+                libraryApp.execute(intOption);
             }catch(Exception e) {
                 System.out.println("You can only insert numbers!!!");
             }
         }
 
     }
-
+    public void loadVariables() throws IOException {
+        LoaderTextFile booksLoaderTextFile = new LoaderTextFile();
+        booksLoaderTextFile.load("libros.txt");
+        librarian =new Librarian(booksLoaderTextFile.getBooks());
+    }
     public void writeWelcomeMessage() {
         writeOption("* * * * W E L C O M E * * * *");
     }
@@ -54,13 +55,13 @@ public class BibliotecaApp {
     public void execute(int option) throws IOException {
         switch (option) {
             case 1:
-                biblioteca.listOnlyAvailableBooks();
+                librarian.listOnlyAvailableBooks();
                 break;
             case 2:
                 writeOption("Please enter the name of the book that you want to checkout....");
                 String bookname=inputUser();
                 try{
-                    biblioteca.checkOut(bookname.toUpperCase());
+                    librarian.checkOut(bookname.toUpperCase());
                 }catch(Exception e){
                     System.out.println("That book is not available");
                 }
@@ -69,7 +70,7 @@ public class BibliotecaApp {
                 writeOption("Please enter the name of the book that you want to return....");
                 String retunrBookname=inputUser();
                 try{
-                    biblioteca.returnBook(retunrBookname.toUpperCase());
+                    librarian.returnBook(retunrBookname.toUpperCase());
                 }catch(Exception e){
                     System.out.println("That book is not available");
                 }
