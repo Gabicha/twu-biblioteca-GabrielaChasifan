@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * Created by gchasifa on 6/9/15.
  */
-public class LoaderTextFile implements Loader {
+public class BookLoader implements Loader {
     private HashMap<String, Book> books = new HashMap<String, Book>();
 
     public void load(String filename) throws IOException{

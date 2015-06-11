@@ -22,7 +22,7 @@ public class TestLibrarian {
     public static final String INFIERNO_DE_ROMA_BOOK = "Infierno de Roma";
     public static final String RECUERDOS_DEL_CUERPO_BOOK = "Recuerdos del cuerpo";
     private Librarian librarian;
-    private LoaderTextFile booksLoaderTextFile;
+    private BookLoader bookLoader;
     private HashMap<String, Book> books;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -30,8 +30,8 @@ public class TestLibrarian {
 
     @Before
     public void setUp() {
-        booksLoaderTextFile=new LoaderTextFile();
-        books=booksLoaderTextFile.getBooks();
+        bookLoader =new BookLoader();
+        books= bookLoader.getBooks();
         librarian = new Librarian(books);
 
         //librarian.setBooks(books);
@@ -48,25 +48,25 @@ public class TestLibrarian {
 
     @Test(expected = FileNotFoundException.class)
     public void testFileNotFoundException() throws IOException {
-        booksLoaderTextFile.load("librose.txt");
+        bookLoader.load("librose.txt");
     }
 
     @Test
     public void shouldFindABook() throws IOException {
-        booksLoaderTextFile.load(FILE_NAME);
+        bookLoader.load(FILE_NAME);
         String bookName = INFIERNO_DE_ROMA_BOOK;
         assertEquals(bookName.toUpperCase(), librarian.findBook(bookName).getName().toUpperCase());
     }
 
     @Test
     public void shouldReadTheCorrectNumberOfBooks() throws IOException {
-        booksLoaderTextFile.load(FILE_NAME);
+        bookLoader.load(FILE_NAME);
         assertEquals(2, librarian.getBooks().size());
     }
 
     @Test
     public void shouldReadTheFirstBookFromTheInputFile() throws IOException {
-        booksLoaderTextFile.load(FILE_NAME);
+        bookLoader.load(FILE_NAME);
         Book firstBook = librarian.getBooks().get(bookName);
         assertEquals(bookName, firstBook.getName());
         assertEquals(2015, firstBook.getYear());
@@ -79,19 +79,19 @@ public class TestLibrarian {
         String secondBookName = String.format(SPACES, RECUERDOS_DEL_CUERPO_BOOK);
         String secondBookYear = String.format(SPACES, YEAR);
         String text = firstBookName + firstBookYear + "\n" + secondBookName + secondBookYear + "\n";
-        booksLoaderTextFile.load(FILE_NAME);
+        bookLoader.load(FILE_NAME);
         librarian.listBooks();
         assertEquals(text.toUpperCase(), outContent.toString());
     }
     @Test
     public void shouldCheckoutBook() throws IOException {
-        booksLoaderTextFile.load(FILE_NAME);
+        bookLoader.load(FILE_NAME);
         librarian.checkOut(bookName);
         assertEquals(0, librarian.getBooks().get(bookName).getStatus());
     }
     @Test
     public void shouldListOnlyAvailableBooks() throws IOException {
-        booksLoaderTextFile.load(FILE_NAME);
+        bookLoader.load(FILE_NAME);
         librarian.listOnlyAvailableBooks();
         String firstBookName = String.format(SPACES, INFIERNO_DE_ROMA_BOOK);
         String firstBookYear = String.format(SPACES, YEAR);
@@ -103,7 +103,7 @@ public class TestLibrarian {
 
     @Test
     public void shouldCheckOutAndListOnlyAvailableBooks() throws IOException {
-        booksLoaderTextFile.load(FILE_NAME);
+        bookLoader.load(FILE_NAME);
         librarian.checkOut(bookName);
         librarian.listOnlyAvailableBooks();
         String firstBookName = String.format(SPACES, INFIERNO_DE_ROMA_BOOK);
@@ -113,7 +113,7 @@ public class TestLibrarian {
     }
     @Test
     public void shouldReturnBook() throws IOException {
-        booksLoaderTextFile.load(FILE_NAME);
+        bookLoader.load(FILE_NAME);
         librarian.returnBook(bookName);
     }
 }

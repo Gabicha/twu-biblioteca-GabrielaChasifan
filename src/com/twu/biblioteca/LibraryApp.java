@@ -27,9 +27,9 @@ public class LibraryApp {
 
     }
     public void loadVariables() throws IOException {
-        LoaderTextFile booksLoaderTextFile = new LoaderTextFile();
-        booksLoaderTextFile.load("libros.txt");
-        librarian =new Librarian(booksLoaderTextFile.getBooks());
+        BookLoader bookLoader = new BookLoader();
+        bookLoader.load("libros.txt");
+        librarian =new Librarian(bookLoader.getBooks());
     }
     public void writeWelcomeMessage() {
         writeOption("* * * * W E L C O M E * * * *");
