@@ -116,4 +116,11 @@ public class TestLibrarian {
         bookLoader.load(FILE_NAME);
         librarian.returnBook(bookName);
     }
+    @Test
+    public void shouldRegisterWhichUserHasCheckOutABook() throws IOException {
+        bookLoader.load(FILE_NAME);
+        librarian.RegisterUser("123-4567",bookName);
+        String userLibraryNumber=librarian.getUser(bookName);
+        assertEquals("123-4567",userLibraryNumber );
+    }
 }

@@ -56,4 +56,13 @@ public class Librarian {
             }
         }
     }
+
+    public void RegisterUser(String libraryNumber,String bookName) {
+        this.books.get(bookName).setUserLibraryNumber(libraryNumber);
+    }
+
+    public String getUser(String bookName) {
+        Book userBook=findBook(bookName);
+        return userBook.getUserLibraryNumber();
+    }
 }

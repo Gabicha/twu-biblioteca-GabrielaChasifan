@@ -56,4 +56,12 @@ public class Movie {
     public void setStatus(int status){
         this.status=status;
     }
+
+    public String getMovieInformation() {
+        String movieName = "NAME: "+name+ "\n";
+        String movieYear = "YEAR: "+year+"\n";
+        String movieDirector = "DIRECTOR: "+director +"\n";
+        String movieRating = "RATING: "+rating +"\n";
+        return movieName+movieYear+movieDirector+movieRating;
+    }
 }

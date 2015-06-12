@@ -13,9 +13,9 @@ public class BookLoader implements Loader {
         String text;
         BufferedReader buffer = new BufferedReader(findFile(filename));
         while ((text = buffer.readLine()) != null) {
-            String[] cadena = text.trim().split(",");
-            Book book = new Book(cadena[0], Integer.parseInt(cadena[1]), Integer.parseInt(cadena[2]));
-            books.put(cadena[0].toUpperCase(), book);
+            String[] booksRecord = text.trim().split(",");
+            Book book = new Book(booksRecord[0], Integer.parseInt(booksRecord[1]), Integer.parseInt(booksRecord[2]));
+            books.put(booksRecord[0].toUpperCase(), book);
         }
         buffer.close();
     }
