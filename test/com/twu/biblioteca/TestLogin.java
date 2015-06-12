@@ -10,7 +10,7 @@ public class TestLogin {
     @Test
     public void shouldVerifyPassword(){
         String userLibraryNumber="123-4567";
-        String password="PASSWORD";
+        String password="********";
         Login login=new Login(userLibraryNumber,password);
         assertTrue(login.verifyPassword());
     }
